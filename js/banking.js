@@ -1,10 +1,21 @@
-// deposit area
+// common function
+function getInputValue(id) {
+  const depositInput = document.getElementById(id);
+  const depositeAmount = parseInt(depositInput.value);
+
+  //   clear deposit input
+  depositInput.value = "";
+  return depositeAmount;
+}
+
+// deposit area code
 document
   .getElementById("deposite-button")
   .addEventListener("click", function () {
-    const depositInput = document.getElementById("deposit-input");
+    /* const depositInput = document.getElementById("deposit-input");
     const depositeAmount = parseInt(depositInput.value);
-
+ */
+    const depositeAmount = getInputValue("deposit-input");
     //   get current deposite
     const deposite = document.getElementById("diposit-amount");
     let currentDeposite = parseInt(deposite.innerText);
@@ -17,10 +28,6 @@ document
     let totalBalance = parseInt(balance.innerText);
     totalBalance = depositeAmount + totalBalance;
     balance.innerText = totalBalance;
-
-    //   clear deposit input
-    depositInput.value = "";
-    document.getElementById("deposite-area").style.backgroundColor("red");
   });
 
 //   withdraw area
