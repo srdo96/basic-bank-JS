@@ -2,46 +2,44 @@
 function getInputValue(id) {
   const inputField = document.getElementById(id);
   const inputAmount = parseInt(inputField.value);
-
   //   clear deposit input
   inputField.value = "";
   return inputAmount;
+}
+
+function updateTotalField(id, inputAmount) {
+  const previousAmountText = document.getElementById(id);
+  const previousAmount = parseInt(previousAmountText.innerText);
+  previousAmountText.innerText = inputAmount + previousAmount;
+}
+
+function updateBalance(amount, type) {
+  const balanceText = document.getElementById("total-balance");
+  const currentBalance = parseInt(balanceText.innerText);
+  if (type == "deposit") {
+    balanceText.innerText = amount + currentBalance;
+  } else {
+    balanceText.innerText = currentBalance - amount;
+  }
 }
 
 // deposit area code
 document
   .getElementById("deposite-button")
   .addEventListener("click", function () {
-    const depositeAmount = getInputValue("deposit-input");
-    //   get current deposite
-    const deposite = document.getElementById("diposit-amount");
-    let currentDeposite = parseInt(deposite.innerText);
-
-    currentDeposite = depositeAmount + currentDeposite;
-    deposite.innerText = currentDeposite;
-
+    const depositAmount = getInputValue("deposit-input");
+    updateTotalField("diposit-amount", depositAmount);
     // update balance
-    const balance = document.getElementById("total-balance");
-    let totalBalance = parseInt(balance.innerText);
-    totalBalance = depositeAmount + totalBalance;
-    balance.innerText = totalBalance;
+    updateBalance(depositAmount, "deposit");
   });
 
 //   withdraw area
-
 document
   .getElementById("withdraw-button")
   .addEventListener("click", function () {
     const newWithdrawAmount = getInputValue("withdraw-input");
-    const withdrawAmountTotalText = document.getElementById(
-      "withdraw-amount-total"
-    );
-    const withdrawAmountTotal = parseInt(withdrawAmountTotalText.innerText);
-    const currentWithdrawAmount = withdrawAmountTotal + newWithdrawAmount;
-    withdrawAmountTotalText.innerText = currentWithdrawAmount;
-    //   balance
-    const totalBalanceText = document.getElementById("total-balance");
-    const currentTotalBalance = parseInt(totalBalanceText.innerText);
-    const newTotalBalance = currentTotalBalance - newWithdrawAmount;
-    totalBalanceText.innerText = newTotalBalance;
+
+    updateTotalField("withdraw-amount-total", newWithdrawAmount);
+    //  update balance
+    updateBalance(newWithdrawAmount, "withdraw");
   });
