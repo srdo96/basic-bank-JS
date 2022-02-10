@@ -38,5 +38,9 @@ document
     withdrawAmountTotalText.innerText = currentWithdrawAmount;
     //   balance
     const totalBalanceText = document.getElementById("total-balance");
-    let totalBalance = parseInt(balance.innerText);
+    const currentTotalBalance = parseInt(totalBalanceText.innerText);
+    const newTotalBalance = currentTotalBalance - newWithdrawAmount;
+    totalBalanceText.innerText = newTotalBalance;
+    //   clear withdraw input
+    withdrawInput.value = "";
   });
