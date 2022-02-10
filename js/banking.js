@@ -1,10 +1,10 @@
 // common function
 function getInputValue(id) {
-  const depositInput = document.getElementById(id);
-  const depositeAmount = parseInt(depositInput.value);
+  const inputField = document.getElementById(id);
+  const depositeAmount = parseInt(inputField.value);
 
   //   clear deposit input
-  depositInput.value = "";
+  inputField.value = "";
   return depositeAmount;
 }
 
@@ -12,9 +12,6 @@ function getInputValue(id) {
 document
   .getElementById("deposite-button")
   .addEventListener("click", function () {
-    /* const depositInput = document.getElementById("deposit-input");
-    const depositeAmount = parseInt(depositInput.value);
- */
     const depositeAmount = getInputValue("deposit-input");
     //   get current deposite
     const deposite = document.getElementById("diposit-amount");
@@ -35,9 +32,7 @@ document
 document
   .getElementById("withdraw-button")
   .addEventListener("click", function () {
-    const withdrawInput = document.getElementById("withdraw-input");
-    const newWithdrawAmount = parseInt(withdrawInput.value);
-
+    const newWithdrawAmount = getInputValue("withdraw-input");
     const withdrawAmountTotalText = document.getElementById(
       "withdraw-amount-total"
     );
@@ -49,6 +44,4 @@ document
     const currentTotalBalance = parseInt(totalBalanceText.innerText);
     const newTotalBalance = currentTotalBalance - newWithdrawAmount;
     totalBalanceText.innerText = newTotalBalance;
-    //   clear withdraw input
-    withdrawInput.value = "";
   });
