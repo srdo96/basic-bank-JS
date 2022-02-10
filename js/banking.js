@@ -1,11 +1,11 @@
 // common function
 function getInputValue(id) {
   const inputField = document.getElementById(id);
-  const depositeAmount = parseInt(inputField.value);
+  const inputAmount = parseInt(inputField.value);
 
   //   clear deposit input
   inputField.value = "";
-  return depositeAmount;
+  return inputAmount;
 }
 
 // deposit area code
